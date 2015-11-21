@@ -132,12 +132,12 @@ class Main extends PluginBase {
 		return $this->config->get("no.votes.amount");
 	}
 	
-	public function setYesVotes(int $amount) {
+	public function setYesVotes($amount) {
 		return $this->config->set("yes.votes.amount", $amount);
 		$this->config->save();
 	}
 	
-	public function setNoVotes(int $amount) {
+	public function setNoVotes($amount) {
 		return $this->config->set("no.votes.amount", $amount);
 		$this->config->save();
 	}
