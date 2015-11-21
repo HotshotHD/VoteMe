@@ -103,7 +103,7 @@ class Main extends PluginBase {
 		"last.question" => ""
 		));
 		
-		$this->player->get("last.question");
+		return $this->player->get("last.question");
 	}
 	
 	public function generatePlayerData($player) {
