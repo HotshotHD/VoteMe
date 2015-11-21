@@ -43,27 +43,27 @@ class Main extends PluginBase {
 					}
 
 					if(strtolower($array[0]) == "yes") {
-						if($this->hasVoted($sender)) {
+						if($this->hasVoted($sender->getName())) {
 							$sender->sendMessage($this->messages->get("already.voted"));
 							return true;
 						}
 						else {
 						$sender->sendMessage($this->messages->get("vote.success"));
 						$this->saveYesVote();
-						$this->setPlayerLastQuestion($this->getQuestion());
+						$this->setPlayerLastQuestion($sender->getName(), $this->getQuestion());
 						return true;
 						}
 					}
 					
 					if(strtolower($array[0]) == "no") {
-						if($this->hasVoted($sender)) {
+						if($this->hasVoted($sender->getName())) {
 							$sender->sendMessage($this->messages->get("already.voted"));
 							return true;
 						}
 						else {
 						$sender->sendMessage($this->messages->get("vote.success"));
 						$this->saveNoVote();
-						$this->setPlayerLastQuestion($this->getQuestion());
+						$this->setPlayerLastQuestion($sender->getName(), $this->getQuestion());
 						return true;
 						}
 					}
@@ -80,14 +80,14 @@ class Main extends PluginBase {
 		$this->lastquestion = $str;
 	}
 	
-	public function hasVoted(Player $player) {
+	public function hasVoted($player) {
 		if($this->getPlayerLastQuestion($player) == $this->getQuestion()) {
 			return true;
 		}
 	}
 	
-	public function setPlayerLastQuestion(Player $player, $question) {
-		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player->getName()) . ".yml", Config::YAML, array(
+	public function setPlayerLastQuestion($player, $question) {
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
 		"last.question" => ""
 		));
 		
@@ -95,16 +95,16 @@ class Main extends PluginBase {
 		$this->player->save();
 	}
 	
-	public function getPlayerLastQuestion(Player $player) {
-		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player->getName()) . ".yml", Config::YAML, array(
+	public function getPlayerLastQuestion($player) {
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
 		"last.question" => ""
 		));
 		
 		$this->player->get("last,question");
 	}
 	
-	public function generatePlayerData(Player $player) {
-		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player->getName()) . ".yml", Config::YAML, array(
+	public function generatePlayerData($player) {
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
 		"last.question" => ""
 		));
 		
