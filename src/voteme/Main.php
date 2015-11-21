@@ -8,8 +8,6 @@ use pocketmine\command\Command;
 
 class Main extends PluginBase {
     
-    public $lastquestion;
-    
     public function onEnable() {	
 	    @mkdir($this->getDataFolder());
 	    @mkdir($this->getDataFolder() . "Data/");
@@ -19,13 +17,14 @@ class Main extends PluginBase {
 	    "yes.votes.amount" => 0,
 	    "no.votes.amount" => 0
 	    ));
-		
+	    $this->data = new Config($this->getDataFolder() . "Data/" . "last-question.yml", Config::YAML, array(
+	    "last.question" => ""
+	    ));
 	    $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array(
 	    "vote.success" => "Your vote has been submitted!",
 	    "already.voted" => "You have already submitted a vote for this question"
 	    ));
-		
-            $this->lastquestion = $this->getQuestion();
+	
 	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new QueryQuestion($this), 20);
 	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new QueryVotes($this), 20);
 	   
@@ -74,11 +73,12 @@ class Main extends PluginBase {
 	}
 	
 	public function getLastQuestion() {
-		return $this->lastquestion;
+		return $this->data->get("last.question");
 	}
 	
 	public function setLastQuestion($str) {
-		$this->lastquestion = $str;
+		$this->data->set("last.question", $str);
+		$this->data->save();
 	}
 	
 	public function hasVoted($player) {
