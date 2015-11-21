@@ -89,25 +89,35 @@ class Main extends PluginBase {
 	}
 	
 	public function setPlayerVoteStatus($player, $value) {
-		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"vote.status" => ""
-		));
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml");
 		
 		$this->player->set("vote.status", $value);
 		$this->player->save();
 	}
 	
 	public function getPlayerVoteStatus($player) {
-		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"vote.status" => ""
-		));
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml");
 		
 		return $this->player->get("vote.status");
 	}
 	
+	public function setPlayerLastQuestion($player, $question) {
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml");
+		
+		$this->player->set("last.question", $question);
+		$this->player->save();
+	}
+	
+	public function getPlayerLastQuestion($player) {
+		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml");
+		
+		return $this->player->get("last.question");
+	}
+	
 	public function generatePlayerData($player) {
 		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"vote.status" => ""
+		"vote.status" => "",
+		"last.question" => ""
 		));
 		
 		$this->player;
