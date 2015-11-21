@@ -15,7 +15,7 @@ class Main extends PluginBase {
 	    @mkdir($this->getDataFolder() . "Data/");
 	    $this->getServer()->getPluginManager()->registerEvents(new PluginListener($this), $this);
 	    $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
-	    "question" => "",
+	    "question" => "Do you like this server?",
 	    "yes.votes.amount" => 0,
 	    "no.votes.amount" => 0
 	    ));
