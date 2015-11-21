@@ -8,7 +8,7 @@ use pocketmine\event\player\PlayerJoinEvent;
 
 class PluginListener implements Listener {
   
-  public $plugin
+  public $plugin;
   
   public function __construct(Main $plugin) {
     $this->plugin = $plugin;
