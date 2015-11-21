@@ -16,8 +16,8 @@ class Main extends PluginBase {
 	    $this->getServer()->getPluginManager()->registerEvents(new PluginListener($this), $this);
 	    $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
 	    "question" => "",
-	    "yes.votes" => 0,
-	    "no.votes" => 0
+	    "yes.votes.amount" => 0,
+	    "no.votes.amount" => 0
 	    ));
 		
 	    $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array(
@@ -31,7 +31,7 @@ class Main extends PluginBase {
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $array) {
 		if(strtolower($cmd->getName()) == "voteme") {
 			if(count($array) == 1) {
-				if(empty($array[0])) {
+				if(empty($array)) {
 					$sender->sendMessage("Usage: /voteme question|yes|no");
 					return true;
 				}
@@ -126,20 +126,20 @@ class Main extends PluginBase {
 	}
 	
 	public function getYesVotes() {
-		return $this->config->get("yes.votes");
+		return $this->config->get("yes.votes.amount");
 	}
 	
 	public function getNoVotes() {
-		return $this->config->get("no.votes");
+		return $this->config->get("no.votes.amount");
 	}
 	
 	public function setYesVotes(int $amount) {
-		return $this->config->set("yes.votes", $amount);
+		return $this->config->set("yes.votes.amount", $amount);
 		$this->config->save();
 	}
 	
 	public function setNoVotes(int $amount) {
-		return $this->config->set("no.votes", $amount);
+		return $this->config->set("no.votes.amount", $amount);
 		$this->config->save();
 	}
 }
