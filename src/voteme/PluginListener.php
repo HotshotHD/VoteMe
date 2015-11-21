@@ -17,6 +17,6 @@ class PluginListener implements Listener {
   public function onJoin(PlayerJoinEvent $event) {
     $player = $event->getPlayer();
     
-    $this->plugin->generatePlayerData($player);
+    $this->plugin->generatePlayerData($player->getName());
   }
 }
