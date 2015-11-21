@@ -10,20 +10,20 @@ class Main extends PluginBase {
 	
     public function onEnable() {	
 	    @mkdir($this->getDataFolder());
-		@mkdir($this->getDataFolder() . "Data/");
-		$this->getServer()->getPluginManager()->registerEvents(new PluginListener($this), $this);
+	    @mkdir($this->getDataFolder() . "Data/");
+	    $this->getServer()->getPluginManager()->registerEvents(new PluginListener($this), $this);
 	    $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
 	    "question" => "",
-		"yes.votes" => "",
-		"no.votes" => ""
+	    "yes.votes" => "",
+	    "no.votes" => ""
 	    ));
 		
-		$this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array(
+	    $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array(
 	    "vote.success" => "Your vote has been submitted!",
-		"already.voted" => "You have already submitted a vote for this question"
+	    "already.voted" => "You have already submitted a vote for this question"
 	    ));
 		
-		$this->getServer()->scheduleRepeatingTask(new QueryQuestion($this), 20);
+	    $this->getServer()->scheduleRepeatingTask(new QueryQuestion($this), 20);
     }
 	
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $array) {
