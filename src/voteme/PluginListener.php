@@ -19,7 +19,7 @@ class PluginListener implements Listener {
     
     $this->plugin->generatePlayerData($player->getName());
     if($this->plugin->getQuestion() !== $this->plugin->getPlayerLastQuestion($player->getName())) {
-      $this->plugin->setPlayerLastQuestion($player->getName(), $this->getQuestion());
+      $this->plugin->setPlayerLastQuestion($player->getName(), $this->plugin->getQuestion());
       $this->plugin->setPlayerVoteStatus($player->getName(), false);
     }
   }
