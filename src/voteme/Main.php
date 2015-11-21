@@ -82,9 +82,7 @@ class Main extends PluginBase {
 	}
 	
 	public function hasVoted($player) {
-		if($this->getPlayerLastQuestion($player) == $this->getQuestion()) {
-			return true;
-		}
+		return $this->getPlayerLastQuestion($player) == $this->getQuestion();
 	}
 	
 	public function setPlayerLastQuestion($player, $question) {
