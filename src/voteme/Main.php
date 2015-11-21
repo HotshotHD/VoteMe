@@ -33,12 +33,11 @@ class Main extends PluginBase {
 	
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $array) {
 		if(strtolower($cmd->getName()) == "voteme") {
-			if(count($array) == 1) {
-				if(count($array) == 0) {
-					$sender->sendMessage("Usage: /voteme question|yes|no");
+			if(count($array) == 0) {
+					$sender->sendMessage("Usage: /voteme <question | yes | no>");
 					return true;
 				}
-				else {
+			if(count($array) == 1) {
 					if(strtolower($array[0]) == "question") {
 						$sender->sendMessage("[VoteMe] " . $this->getQuestion());
 						$sender->sendMessage("Yes: " . $this->getYesVotes() . " No: " . $this->getNoVotes());
@@ -72,7 +71,6 @@ class Main extends PluginBase {
 					}
 				}
 			}
-		}
 	}
 	
 	public function getLastQuestion() {
