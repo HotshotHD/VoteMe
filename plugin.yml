@@ -1,0 +1,10 @@
+name: VoteMe
+author: HotshotHD
+api: [1.12.0, 1.13.0]
+version: 1.0.0
+main: voteme\Main
+description: Vote for me!
+
+commands:
+  voteme:
+    description: "Main VoteMe command"
