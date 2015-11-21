@@ -16,8 +16,8 @@ class Main extends PluginBase {
 	    $this->getServer()->getPluginManager()->registerEvents(new PluginListener($this), $this);
 	    $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array(
 	    "question" => "",
-	    "yes.votes" => "",
-	    "no.votes" => ""
+	    "yes.votes" => 0,
+	    "no.votes" => 0
 	    ));
 		
 	    $this->messages = new Config($this->getDataFolder() . "messages.yml", Config::YAML, array(
