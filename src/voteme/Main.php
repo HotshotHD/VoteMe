@@ -25,8 +25,11 @@ class Main extends PluginBase {
 	    "already.voted" => "You have already submitted a vote for this question"
 	    ));
 	
-	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new QueryQuestion($this), 20);
-	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new QueryVotes($this), 20);
+	    if($this->getQuestion() !== $this->getLastQuestion()) {
+	    	$this->setNoVotes(0);
+	    	$this->setYesVotes(0);
+	    	$this->setLastQuestion($this->getQuestion());
+	    }
 	   
     }
 	
