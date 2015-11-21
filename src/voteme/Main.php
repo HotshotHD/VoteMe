@@ -25,7 +25,7 @@ class Main extends PluginBase {
 	    "already.voted" => "You have already submitted a vote for this question"
 	    ));
 		
-	    $this->getServer()->scheduleRepeatingTask(new QueryQuestion($this), 20);
+	    $this->getServer()->getScheduler()->scheduleRepeatingTask(new QueryQuestion($this), 20);
     }
 	
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $array) {
