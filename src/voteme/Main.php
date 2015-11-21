@@ -7,7 +7,9 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 
 class Main extends PluginBase {
-	
+    
+    public $lastquestion;
+    
     public function onEnable() {	
 	    @mkdir($this->getDataFolder());
 	    @mkdir($this->getDataFolder() . "Data/");
@@ -70,6 +72,14 @@ class Main extends PluginBase {
 		}
 	}
 	
+	public function getLastQuestion() {
+		return $this->lastquestion;
+	}
+	
+	public function setLastQuestion($str) {
+		$this->lastquestion = $str;
+	}
+	
 	public function hasVoted(Player $player) {
 		if($this->getPlayerLastQuestion($player) == $this->getQuestion()) {
 			return true;
@@ -121,5 +131,15 @@ class Main extends PluginBase {
 	
 	public function getNoVotes() {
 		return $this->config->get("no.votes");
+	}
+	
+	public function setYesVotes(int $amount) {
+		return $this->config->set("yes.votes", $amount);
+		$this->config->save();
+	}
+	
+	public function setNoVotes(int $amount) {
+		return $this->config->set("no.votes", $amount);
+		$this->config->save();
 	}
 }
