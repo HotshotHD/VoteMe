@@ -18,5 +18,8 @@ class PluginListener implements Listener {
     $player = $event->getPlayer();
     
     $this->plugin->generatePlayerData($player->getName());
+    if($this->plugin->getQuestion() !== $this->plugin->getLastQuestion()) {
+      $this->plugin->setPlayerVoteStatus($player->getName(), false);
+    }
   }
 }
