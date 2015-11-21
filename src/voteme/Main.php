@@ -34,7 +34,7 @@ class Main extends PluginBase {
 	public function onCommand(CommandSender $sender, Command $cmd, $label, array $array) {
 		if(strtolower($cmd->getName()) == "voteme") {
 			if(count($array) == 1) {
-				if(empty($array)) {
+				if(count($array) == 0) {
 					$sender->sendMessage("Usage: /voteme question|yes|no");
 					return true;
 				}
