@@ -52,7 +52,7 @@ class Main extends PluginBase {
 						else {
 						$sender->sendMessage($this->messages->get("vote.success"));
 						$this->saveYesVote();
-						$this->setPlayerLastQuestion($sender->getName(), $this->getQuestion());
+						$this->setPlayerVoteStatus($sender->getName(), true);
 						return true;
 						}
 					}
@@ -65,7 +65,7 @@ class Main extends PluginBase {
 						else {
 						$sender->sendMessage($this->messages->get("vote.success"));
 						$this->saveNoVote();
-						$this->setPlayerLastQuestion($sender->getName(), $this->getQuestion());
+						$this->setPlayerVoteStatus($sender->getName(), true);
 						return true;
 						}
 					}
@@ -82,29 +82,29 @@ class Main extends PluginBase {
 	}
 	
 	public function hasVoted($player) {
-		return $this->getPlayerLastQuestion($player) == $this->getQuestion();
+		return $this->getPlayerVoteStatus($player) == true;
 	}
 	
-	public function setPlayerLastQuestion($player, $question) {
+	public function setPlayerVoteStatus($player, $value) {
 		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"last.question" => ""
+		"vote.status" => ""
 		));
 		
-		$this->player->set("last.question", $question);
+		$this->player->set("vote.status", $value);
 		$this->player->save();
 	}
 	
-	public function getPlayerLastQuestion($player) {
+	public function getPlayerVoteStatus($player) {
 		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"last.question" => ""
+		"vote.status" => ""
 		));
 		
-		return $this->player->get("last.question");
+		return $this->player->get("vote.status");
 	}
 	
 	public function generatePlayerData($player) {
 		$this->player = new config($this->getDataFolder() . "Data/" . strtolower($player) . ".yml", Config::YAML, array(
-		"last.question" => ""
+		"vote.status" => ""
 		));
 		
 		$this->player;
