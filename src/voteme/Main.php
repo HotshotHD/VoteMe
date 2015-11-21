@@ -94,7 +94,7 @@ class Main extends PluginBase {
 		"last.question" => ""
 		));
 		
-		$this->player->set("last,question", $question);
+		$this->player->set("last.question", $question);
 		$this->player->save();
 	}
 	
@@ -103,7 +103,7 @@ class Main extends PluginBase {
 		"last.question" => ""
 		));
 		
-		$this->player->get("last,question");
+		$this->player->get("last.question");
 	}
 	
 	public function generatePlayerData($player) {
