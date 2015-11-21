@@ -14,8 +14,9 @@ class QueryQuestion extends PluginTask {
   
   public function onRun($currentTick) {
     foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
-      if($this->plugin->getPlayerLastQuestion($player) !== $this->plugin->getQuestion()) {
-        $this->plugin->setPlayerLastQuestion($player, $this->plugin->getQuestion());
+      if($this->plugin->getLastQuestion($player) !== $this->plugin->getQuestion()) {
+       foreach($this->plugin->getServer()->getOnlinePlayers() as $player) {
+        $this->plugin->setPlayerVoteStatus($player, false);
       }
     }
   }
